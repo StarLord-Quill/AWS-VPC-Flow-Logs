@@ -19,7 +19,7 @@ We've acquired Alpha Inc.'s AWS VPC flow logs from 2023-09-28. This is the day w
 
 <p align="center">
 Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/n9cRSm3" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Select the disk:  <br/>

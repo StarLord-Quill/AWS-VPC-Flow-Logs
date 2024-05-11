@@ -18,58 +18,77 @@ We've acquired Alpha Inc.'s AWS VPC flow logs from 2023-09-28. This is the day w
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
+Use "ls" to list all files and directories in /sec401/labs/1.3/20230928: <br/>
 <img src="https://imgur.com/8RQArbl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Select the disk:  <br/>
+<br />
+<br />
+Command line notes:<br/>
+ - "ls" will list each item in the directory <br />
+ - "| wc -l" uses a pipe (|) to direct output from the previous command into the wc command to count lines (-l) <br />
+<br />
 <img src="https://imgur.com/BlyzQ8Q.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Enter the number of passes: <br/>
+<br />
+<br />
+ What type of file format are the flow logs stored in? Note that the file extension is usually a good indicator, <br/> but how can you verify the file type in Linux to be sure? Let's use the command file on one of the files to check. <br/>
+<br />
 <img src="https://imgur.com/l8SwQCm.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 <br />
 <br />
 Confirm your selection:  <br/>
 <img src="https://imgur.com/8RaVtAB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+<br />
 Wait for process to complete (may take some time):  <br/>
 <img src="https://imgur.com/ua5RtQE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 <br />
 <br />
 Sanitization complete:  <br/>
 <img src="https://imgur.com/jCG9fZa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+<br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/5qhF0oq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 <br />
 <br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/AjTYQJo.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+<br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/d2eLsUD.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 <br />
 <br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/ICZUjJ5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+<br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/PEjFB5s.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
 <br />
 <br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/41tCWOi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+<br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/IjFcqcz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
-<br /
+<br />
+<br />
 Observe the wiped disk:  <br/>
 <img src="https://imgur.com/OChZSd7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>

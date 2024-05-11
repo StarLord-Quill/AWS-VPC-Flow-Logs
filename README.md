@@ -60,22 +60,58 @@ Command line notes: <br/>
 <h3>Task 2: Flow Record Fields</h3
 <br/>
 <p align="center">
+The VPC flow logs are text-based files containing long tables of connection data. The first line of each file includes the header row. It indicates the type of data stored in each space-separated column. The remaining rows are the connection data. Here's a brief explanation of each field in the flow records table.
 Wait for process to complete (may take some time):  <br/>
+ <br/>
 <img src="https://imgur.com/ua5RtQE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Sanitization complete:  <br/>
+1. Determine the total number of flow records in the collection of log files. Remember to subtract 1 for each log file to account for the header rows.
+<br/>
+<br/>
+Command lines
+<br/>
+Use zcat to extract all the files at once and simultaneously perform a line count across the data of all the extracted files:
+<br/>
+zcat /sec401/labs/1.3/20230928/*.log.gz | wc -l
+<br/>
+<br/>
+Command line notes: <br/>
+ - *.log.gz uses the asterisk * wildcard to specify all files ending .log.gz as input to the calling command (zcat)
+ <br/>
+ <br/>
 <img src="https://imgur.com/jCG9fZa.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+2. We discovered in Labs 1.1 and 1.2 an attacker IP address of 20.106.124.93 targeting a Wordpress web server. Let's filter the logs to create a new log file with flows from only that IP address to make analysis easier.
+<br/>
+ <br/>
+Command lines: <br/>
+Like most things on the Linux command line, there are multiple ways to accomplish the task. One option is to use zcat again and pipe the output to grep to filter for the IP address. grep is a very powerful command for data filtering. Instead, let's combine those steps by using the zgrep command and output the filtered results to a new file named attacker-flows.log in the directory /sec401/labs/1.3:
+<br/>
+<br/>
+zgrep --no-filename 20.106.124.93 /sec401/labs/1.3/20230928/*.log.gz > /sec401/labs/1.3/attacker-flows.log
+<br/>
+<br/>
+Command line notes: <br/>
+ - zgrep is a wrapper around grep with the added ability to directly search gzip-compressed files. <br/>
+ - The --no-filename parameter prevents zgrep from prepending each matched line with the filename it came from. <br/>
+ - The use of > redirects the output of the command on the left to the file on the right.
+ <br/>
+ <br/>
 <img src="https://imgur.com/5qhF0oq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+How many flow records included the attacker's IP?
+<br/>
+<br/>
+Command lines <br/>
+  - wc -l /sec401/labs/1.3/attacker-flows.log
+<br/>
+<br/>
 <img src="https://imgur.com/AjTYQJo.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />

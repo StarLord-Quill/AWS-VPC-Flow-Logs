@@ -138,27 +138,97 @@ Command line notes: <br/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+Next, we can use the date command to convert the start time (15th column) in Unix timestamp format to human-readable format. Use the -d parameter and prefix the Unix timestamp with an @ sign:
+<br/>
+<br/>
+date -d @1695921755  
+<br/>
+<br/>
 <img src="https://imgur.com/ICZUjJ5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+For the purposes of verifying the sort order, what is the start time of the last connection? Does it make sense?
+<br/>
+<br/>
+Command lines
+<br/>
+<br/>
+sort -nk 15 /sec401/labs/1.3/attacker-flows.log | tail -1
+<br/>
+<br/>
+Command line notes: <br/>
+ - We've piped the output to tail -1 to get the last entry, rather than head -1 to get the first.
+<br/>
+<br/>
+Next, we can use the date command to convert the start time in Unix timestamp format to human-readable format.
+<br/>
+<br/>
+date -d @1695945545
+<br/>
+<br/>
 <img src="https://imgur.com/PEjFB5s.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+2. Sort all the flows in the attacker-flows.log file by the bytes field. Among the top 5 flows with the most data transferred, what port number was consistently seen as a top destination port? And what commonly observed port number was consistently seen as a top source port among the top 5?
+<br/>
+<br/>
+Command lines
+<br/>
+<br/>
+Note from the Flow Record Fields table above, the bytes field is in the 12th column. Use the sort command to sort numerically on column 12 by adding the parameter -nk 12. The results are sorted in ascending order. So, to review the top 5 flows with the most bytes sent, pipe the results to tail -5 to see the entries at the end.
+<br/>
+<br/>
+sort -nk 12 /sec401/labs/1.3/attacker-flows.log | tail -5
+<br/>
+<br/>
 <img src="https://imgur.com/41tCWOi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+3. Focus on the destination port of 8889. Determine the total amount of traffic sent to that port.
+<br />
+<br />
+Command lines
+<br />
+<br />
+AWK is a powerful processing language useful for data extraction and transformation. As such, the awk command can be used in this situation to filter on data of interest (dstport 8889), as well as sum the values in a particular field (bytes transferred). To accomplish both at the same time, send the attacker-flows.log data through the awk command, twice.
+<br />
+<br />
+cat /sec401/labs/1.3/attacker-flows.log | awk '$10 == "8889"' | awk '{SUM=SUM+$12} END{print "Total bytes transferred: " SUM}'
+<br />
+<br />
+Command line notes: <br />
+ - Use the cat command to print the contents of attacker-flows.log. We then pipe (|) that output into the awk command.
+ <br />
+ <br />
+ - With the first awk command, the expression '$10 == "8889"' will filter for the value 8889 from the 10th field from the input data. Per the Flow Record Fields table above, the 10th field is the destination port. Filtering for destination port 8889 will output only the rows with that value.
+ <br />
+ <br />
+ - The second awk command consists of the following components: <br />
+ <br />
+       - SUM is a variable used to store the running total of values from the 12th column of the input data, which is the bytes column. SUM=SUM+$12 adds the value in the 12th column for every line in the input data, so it accumulates the total sum as it processes each line.
+ <br />
+ <br />
+       - 'END{print "Total bytes transferred: " SUM}' specifies an action to be taken after all lines have been processed. The END keyword indicates that this action should be performed at the end of processing. In this case, it prints the string "Total bytes transferred: " followed by the final value of the SUM variable.
+<br />
+<br />
 <img src="https://imgur.com/IjFcqcz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+Using a similar approach, how many bytes were transferred on source port 80?
+<br />
+<br />
+cat /sec401/labs/1.3/attacker-flows.log | awk '$9 == "80"' | awk '{SUM=SUM+$12} END{print "Total bytes transferred: " SUM}'
+<br />
+<br />
+Command line notes:
+<br />
+   - The only difference this time is the first awk expression '$9 == "80"'. Per the Flow Record Fields table above, the 9th field is the source port. Filtering for source port 80 will output only the rows with that value. We then pipe that to the second awk command to sum the 12th column to calculate total bytes.
+<br />
+<br />
 <img src="https://imgur.com/OChZSd7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 

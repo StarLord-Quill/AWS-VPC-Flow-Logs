@@ -105,7 +105,7 @@ Command line notes: <br/>
 <br />
 <br />
 <br />
-How many flow records included the attacker's IP?
+ How many flow records included the attacker's IP?
 <br/>
 <br/>
 Command lines <br/>
@@ -116,7 +116,24 @@ Command lines <br/>
 <br />
 <br />
 <br />
-Observe the wiped disk:  <br/>
+ <h3>Task 3: Review the Attacker's Flow Data</h3
+<br/>
+<p align="center">
+1. Based on the available log data, at what time did the attacker's first connection begin?
+<br/>
+<br/>
+Command lines <br/>
+<br/>
+To find the start time that any particular connection began, we can use the start value from the log. Note from the Flow Record Fields table above, the start field is in the 15th column. Since the timestamps are stored in Unix epoch time, which is the number of seconds since January 1, 1970, the smaller the value the number it is, the earlier in time it is. We can therefore use the sort command to sort numerically on column 15 by adding the parameter -nk 15. Since it will be thousands of records, pipe the results through head -1 to get the first result, which is the time the first connection began. 
+<br/>
+<br/>
+sort -nk 15 /sec401/labs/1.3/attacker-flows.log | head -1
+<br/>
+<br/>
+Command line notes: <br/>
+ - It's often possible to combine command parameters in front of a single dash as we've done above. In other words, -nk 15 is the equivalent of -n -k 15
+<br/>
+<br/>
 <img src="https://imgur.com/d2eLsUD.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />

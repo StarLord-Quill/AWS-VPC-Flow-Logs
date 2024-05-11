@@ -24,7 +24,9 @@ Use "ls" to list all files and directories in /sec401/labs/1.3/20230928: <br/>
 <br />
 <br />
 <br />
-Command line notes:<br/>
+1. List the available files and then determine how many log files are there in the flow logs directory. <br/>
+<br/>
+ Command line notes:<br/>
  - "ls" will list each item in the directory <br />
  - "| wc -l" uses a pipe (|) to direct output from the previous command into the wc command to count lines (-l) <br />
 <br />
@@ -33,13 +35,21 @@ Command line notes:<br/>
 <br />
 <br />
 <br />
- What type of file format are the flow logs stored in? Note that the file extension is usually a good indicator, <br/> but how can you verify the file type in Linux to be sure? Let's use the command file on one of the files to check. <br/>
+2. What type of file format are the flow logs stored in? Note that the file extension is usually a good indicator, <br/> but how can you verify the file type in Linux to be sure? Let's use the command "file" on one of the files to check. <br/>
 <br />
 <img src="https://imgur.com/l8SwQCm.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
-Confirm your selection:  <br/>
+3. Now review the contents of the file. To avoid too much data on the screen, we'll output just the first 4 lines of the file 222677128680_vpcflowlogs_us-east-2_fl-0272f423386e6eaaf_20230928T2355Z_e92fb168.log.gz. <br/>
+<br/>
+Command lines <br/>
+zcat /sec401/labs/1.3/20230928/222677128680_vpcflowlogs_us-east-2_fl-0272f423386e6eaaf_20230928T2355Z_e92fb168.log.gz | head -4 <br/>
+<br/>
+Command line notes: <br/>
+ - zcat will concatenate (cat) a gzip-compressed file <br/>
+ - head -4 prints the first 4 lines of input
+  <br/>
 <img src="https://imgur.com/8RaVtAB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />

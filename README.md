@@ -17,6 +17,9 @@ We've acquired Alpha Inc.'s AWS VPC flow logs from 2023-09-28. This is the day w
 
 <h2>Program walk-through:</h2>
 
+<h3>Task 1: VPC Flow Log Format</h3>
+<br/>
+
 <p align="center">
 Use "ls" to list all files and directories in /sec401/labs/1.3/20230928: <br/>
 <img src="https://imgur.com/8RQArbl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -48,12 +51,15 @@ zcat /sec401/labs/1.3/20230928/222677128680_vpcflowlogs_us-east-2_fl-0272f423386
 <br/>
 Command line notes: <br/>
  - zcat will concatenate (cat) a gzip-compressed file <br/>
- - head -4 prints the first 4 lines of input
-  <br/>
+ - head -4 prints the first 4 lines of input <br/>
+ <br/>
 <img src="https://imgur.com/8RaVtAB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 <br />
+<h3>Task 2: Flow Record Fields</h3
+<br/>
+<p align="center">
 Wait for process to complete (may take some time):  <br/>
 <img src="https://imgur.com/ua5RtQE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />

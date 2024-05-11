@@ -22,6 +22,7 @@ We've acquired Alpha Inc.'s AWS VPC flow logs from 2023-09-28. This is the day w
 
 <p align="center">
 Use "ls" to list all files and directories in /sec401/labs/1.3/20230928: <br/>
+<br/>
 <img src="https://imgur.com/8RQArbl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
